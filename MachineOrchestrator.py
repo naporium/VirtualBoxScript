@@ -157,7 +157,6 @@ def modify_interface(machine=None):
     :return:
     """
 
-
     # Verify that there is a configuration setting for the new machine
     # TODO: should very parameters.
     #  we are assuming, correct values for each key... ANd keys are OK!
