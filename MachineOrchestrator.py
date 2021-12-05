@@ -136,6 +136,39 @@ def modify_machine_settings( machine=None):
     else:
         raise RuntimeError("Something Went wrong")
 
+def modify_interface(machine=None):
+    """
+    Change virtual box adapter to Nat or bridged
+    :param machine:
+    :return:
+    """
+
+
+    # Verify that there is a configuration setting for the new machine
+    # TODO: should very parameters.
+    #  we are assuming, correct values for each key... ANd keys are OK!
+    if machine is None:
+        raise RuntimeError("We need configuration settings so that we can modify the machine settings")
+
+    # check if machine to be cloned exist
+    if validate_existing_machine(machine.name) is False:
+        raise RuntimeError(f"Machine does not exist {machine.name}. Create or clone one machine  first")
+    else:
+        print(f"Ready to modify: {machine.name}")
+
+    os_command_to_run = (f'vboxmanage modifyvm {machine.name} --nic{machine.interface_adapter} '
+                         f' {machine.interface_type}')
+    # "vboxmanage modifyvm $NEW_MACHINE_NAME --cpus=$NUMBER_CPUS --memory=$MEMORY --nic3 intnet --intnet3 my_new_internal_network "
+    print(f"Virtual Box Command to execute:{os_command_to_run}")
+    cmd = os_command_to_run
+
+    _subprocess = Popen(cmd, stdout=PIPE, bufsize=-1, universal_newlines=True, shell=True)
+    _subprocess.wait()
+    if _subprocess.returncode == 0:
+        return True
+    else:
+        raise RuntimeError("Something Went wrong")
+
 
 if __name__ == "__main__":
     """
@@ -198,3 +231,11 @@ if __name__ == "__main__":
         interface_name="SecondPrivateNetwork"
     )
     modify_machine_settings(machine=linux_router)
+
+    # create configurations, so that we can change network adapter 4 to a bridge
+    dhcp_server = Machine(
+        name="DHCP_SERVER1",
+        interface_adapter=InterfaceAdapter.INTERFACE_4.value,
+        interface_type=InterfaceAdapterType.BRIDGED.value,
+    )
+    modify_interface(dhcp_server)
