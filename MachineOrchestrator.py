@@ -70,6 +70,7 @@ def validate_existing_machine(verify_this_machine_name):
     if p.returncode != 0:
         raise RuntimeError(p.returncode, p.args)
 
+
 def clone_virtual_machine(clone_this_machine, machine=None):
 
     # check if machine to be cloned exist
@@ -106,6 +107,7 @@ def clone_virtual_machine(clone_this_machine, machine=None):
         return True
     else:
         raise RuntimeError("Something Went wrong")
+
 
 def modify_machine_settings( machine=None):
     # Verify that there is a configuration setting for the new machine
