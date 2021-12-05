@@ -1,0 +1,34 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# https://joachim8675309.medium.com/elk-adventures-part-1-99de2a234423
+
+# default constants
+TIME = Time.now.strftime('%Y-%m-%dT%H:%M:%S')
+CONFIGFILE_HOSTS = '.config/hosts'
+#VAGRANT_BOX = 'bento/ubuntu-14.04'
+VAGRANT_BOX = 'centos/8'
+
+
+# build hosts hash
+hosts = {}
+File.readlines(CONFIGFILE_HOSTS).map(&:chomp).each do |line|
+  ipaddr, hostname = line.split(/\s+/)             # only grab first two columns
+  hosts[hostname] = ipaddr                         # store in hash
+  PRIMARY_SYSTEM = hostname if (line =~ /primary/) # match primary
+end
+
+Vagrant.configure('2') do |config|
+  hosts.each do |hostname, ipaddr|
+    default = if hostname == PRIMARY_SYSTEM then true else false end
+    config.vm.define hostname, primary: default do |node|
+      node.vm.box = VAGRANT_BOX
+      node.vm.hostname = hostname
+      node.vm.network 'private_network', ip: ipaddr
+      node.vm.provider('virtualbox') do |vbox|
+        vbox.name = "#{hostname}_#{TIME}"
+        vbox.memory = '1024' if hostname =~ /elk/
+      end
+    end
+  end
+end
