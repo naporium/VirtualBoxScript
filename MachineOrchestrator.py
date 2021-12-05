@@ -67,7 +67,8 @@ def validate_existing_machine(verify_this_machine_name):
             if verify_this_machine_name == vm_name:
                 return True  # Return means that machine name already exists
         return False  # machine does exist
-
+    if p.returncode != 0:
+        raise RuntimeError(p.returncode, p.args)
 
 def clone_virtual_machine(clone_this_machine, machine=None):
 
