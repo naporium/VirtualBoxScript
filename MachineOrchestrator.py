@@ -11,6 +11,16 @@ __version__ = 2021
 from enum import Enum
 from subprocess import Popen, PIPE, CalledProcessError
 from collections import namedtuple
+import logging
+
+# use a custom formatting specification
+fmtStr = "%(asctime)s: %(levelname)s: %(funcName)s Line:%(lineno)d User:%(user)s %(message)s"
+fmtStr = "%(asctime)s: %(levelname)s: %(message)s"
+dateStr = "%m/%d/%Y %I:%M:%S %p"
+logging.basicConfig(filename="virtualBoxCommands.log",
+                    level=logging.DEBUG,
+                    format=fmtStr,
+                    datefmt=dateStr)
 
 
 class InterfaceAdapter(Enum):
@@ -36,6 +46,7 @@ Machine = namedtuple("Machine", ("name",
                                  "interface_type",
                                  "interface_name")
                      )
+
 
 
 def validate_existing_machine(verify_this_machine_name):
@@ -93,6 +104,7 @@ def clone_virtual_machine(clone_this_machine, machine=None):
         raise RuntimeError("We need configuration for the machine to be cloned")
 
     os_command_to_run = (f'VBoxManage clonevm {clone_this_machine} --name={machine.name} --register --mode=all')
+
     cmd = os_command_to_run
     # bufsize, if given, has the same meaning as the corresponding argument to the built-in open() function:
     # 0 means unbuffered,
@@ -104,6 +116,7 @@ def clone_virtual_machine(clone_this_machine, machine=None):
     _subprocess = Popen(cmd, stdout=PIPE, bufsize=-1, universal_newlines=True, shell=True)
     _subprocess.wait()
     if _subprocess.returncode == 0:
+        logging.info(f"Virtual Box command Executed: { os_command_to_run}")
         return True
     else:
         raise RuntimeError("Something Went wrong")
@@ -132,6 +145,7 @@ def modify_machine_settings( machine=None):
     _subprocess = Popen(cmd, stdout=PIPE, bufsize=-1, universal_newlines=True, shell=True)
     _subprocess.wait()
     if _subprocess.returncode == 0:
+        logging.info(f"Virtual Box command Executed: { os_command_to_run}")
         return True
     else:
         raise RuntimeError("Something Went wrong")
@@ -165,6 +179,7 @@ def modify_interface(machine=None):
     _subprocess = Popen(cmd, stdout=PIPE, bufsize=-1, universal_newlines=True, shell=True)
     _subprocess.wait()
     if _subprocess.returncode == 0:
+        logging.info(f"Virtual Box command Executed: {os_command_to_run}")
         return True
     else:
         raise RuntimeError("Something Went wrong")
@@ -235,7 +250,10 @@ if __name__ == "__main__":
     # create configurations, so that we can change network adapter 4 to a bridge
     dhcp_server = Machine(
         name="DHCP_SERVER1",
+        cpu=1,
+        memory=1024,
         interface_adapter=InterfaceAdapter.INTERFACE_4.value,
         interface_type=InterfaceAdapterType.BRIDGED.value,
+        interface_name=None
     )
     modify_interface(dhcp_server)

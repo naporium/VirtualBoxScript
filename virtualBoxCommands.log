@@ -1,0 +1,20 @@
+12/05/2021 04:53:11 PM: INFO: Virtual Box command Executed: VBoxManage clonevm DebianBase --name=DHCP_SERVER1 --register --mode=all
+12/05/2021 04:53:11 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm DHCP_SERVER1 --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/05/2021 04:53:26 PM: INFO: Virtual Box command Executed: VBoxManage clonevm DebianBase --name=DnsMaster --register --mode=all
+12/05/2021 04:53:27 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm DnsMaster --nic3 intnet --intnet3 'NOVA' --cpus=2 --memory=2048
+12/05/2021 04:53:43 PM: INFO: Virtual Box command Executed: VBoxManage clonevm DebianBase --name=DnsSlave --register --mode=all
+12/05/2021 04:53:44 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm DnsSlave --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/05/2021 04:53:59 PM: INFO: Virtual Box command Executed: VBoxManage clonevm DebianBase --name=LinuxRouter --register --mode=all
+12/05/2021 04:54:00 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/05/2021 04:54:00 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic4 intnet --intnet4 SecondPrivateNetwork --cpus=1 --memory=1024
+12/05/2021 04:54:00 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm DHCP_SERVER1 --nic4  bridged
+12/05/2021 04:54:49 PM: INFO: Virtual Box command Executed: VBoxManage clonevm DebianBase --name=DHCP_SERVER1 --register --mode=all
+12/05/2021 04:54:49 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm DHCP_SERVER1 --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/05/2021 04:55:05 PM: INFO: Virtual Box command Executed: VBoxManage clonevm DebianBase --name=DnsMaster --register --mode=all
+12/05/2021 04:55:05 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm DnsMaster --nic3 intnet --intnet3 'NOVA' --cpus=2 --memory=2048
+12/05/2021 04:55:21 PM: INFO: Virtual Box command Executed: VBoxManage clonevm DebianBase --name=DnsSlave --register --mode=all
+12/05/2021 04:55:21 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm DnsSlave --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/05/2021 04:55:36 PM: INFO: Virtual Box command Executed: VBoxManage clonevm DebianBase --name=LinuxRouter --register --mode=all
+12/05/2021 04:55:37 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/05/2021 04:55:37 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic4 intnet --intnet4 SecondPrivateNetwork --cpus=1 --memory=1024
+12/05/2021 04:55:37 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm DHCP_SERVER1 --nic4  bridged
