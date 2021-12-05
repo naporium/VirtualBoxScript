@@ -1,0 +1,34 @@
+
+
+
+
+# List virtual machines installed 
+vboxmanage list vms
+# OUTPUT
+"DebianBase" {9a44944f-76c8-42e0-9cc5-9c2f87d2c75d}
+"redHahBase" {82bd0132-e58f-4aca-9ac3-94eaa1b9e5fa}
+"redHahBaseClone1" {a94d4292-b226-4391-9f2b-1e6a3622be18}
+"PostgreSQL_default_1636478173993_92925" {acce8930-0e4e-424f-8396-5aaa2124c75d}
+"lixoApagar_default_1637615380400_36930" {516731f8-9581-4653-a01a-496dd662f4ae}
+
+
+# vm info
+vboxmanage showvminfo "DebianBase"
+
+
+
+# clone a virtual machine
+# https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/vboxmanage-clonevm.html
+
+VBoxManage clonevm DebianBase --name="DebianBaseClone" --register --mode=all
+
+
+# MODIFY VM
+# https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/vboxmanage-modifyvm.html#
+
+
+vboxmanage modifyvm DebianBaseClone --cpus="3" --memory="2048"
+
+# MODIFY NETWORK ADAPTERS
+vboxmanage modifyvm DebianBaseClone --nic3 intnet --cableconnected="On" --intnet3 "NOVA" 
+
