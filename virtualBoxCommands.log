@@ -18,3 +18,43 @@
 12/05/2021 04:55:37 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
 12/05/2021 04:55:37 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic4 intnet --intnet4 SecondPrivateNetwork --cpus=1 --memory=1024
 12/05/2021 04:55:37 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm DHCP_SERVER1 --nic4  bridged
+12/27/2021 06:27:53 AM: INFO: Virtual Box command Executed: VBoxManage clonevm DebianBase --name=DHCP_SERVER1 --register --mode=all
+12/27/2021 06:27:53 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm DHCP_SERVER1 --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/27/2021 06:28:00 AM: INFO: Virtual Box command Executed: VBoxManage clonevm DebianBase --name=linuxClient --register --mode=all
+12/27/2021 06:28:00 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm linuxClient --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/27/2021 06:28:15 AM: INFO: Virtual Box command Executed: VBoxManage clonevm DebianBase --name=LinuxRouter --register --mode=all
+12/27/2021 06:28:15 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/27/2021 06:28:15 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic4 intnet --intnet4 SecondPrivateNetwork --cpus=1 --memory=1024
+12/27/2021 06:28:15 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm DHCP_SERVER1 --nic4  bridged
+12/27/2021 09:13:16 AM: INFO: Virtual Box command Executed: VBoxManage clonevm RockyBase --name=DHCP_SERVER1 --register --mode=all
+12/27/2021 09:13:16 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm DHCP_SERVER1 --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/27/2021 09:13:32 AM: INFO: Virtual Box command Executed: VBoxManage clonevm RockyBase --name=linuxClient --register --mode=all
+12/27/2021 09:13:32 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm linuxClient --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/27/2021 09:13:40 AM: INFO: Virtual Box command Executed: VBoxManage clonevm RockyBase --name=LinuxRouter --register --mode=all
+12/27/2021 09:13:40 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/27/2021 09:13:40 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic4 intnet --intnet4 SecondPrivateNetwork --cpus=1 --memory=1024
+12/27/2021 09:13:40 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm DHCP_SERVER1 --nic4  bridged
+12/27/2021 09:26:28 AM: INFO: Virtual Box command Executed: VBoxManage clonevm RockyBase --name=DHCP_SERVER1 --register --mode=all
+12/27/2021 09:26:28 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm DHCP_SERVER1 --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/27/2021 09:26:37 AM: INFO: Virtual Box command Executed: VBoxManage clonevm RockyBase --name=linuxClient --register --mode=all
+12/27/2021 09:26:37 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm linuxClient --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/27/2021 09:26:45 AM: INFO: Virtual Box command Executed: VBoxManage clonevm RockyBase --name=LinuxRouter --register --mode=all
+12/27/2021 09:26:45 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/27/2021 09:26:45 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic4 intnet --intnet4 SecondPrivateNetwork --cpus=1 --memory=1024
+12/27/2021 09:26:45 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm DHCP_SERVER1 --nic4  bridged
+12/27/2021 09:33:53 AM: INFO: Virtual Box command Executed: VBoxManage clonevm RockyBase --name=DHCP_SERVER1 --register --mode=all
+12/27/2021 09:33:53 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm DHCP_SERVER1 --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/27/2021 09:34:01 AM: INFO: Virtual Box command Executed: VBoxManage clonevm RockyBase --name=linuxClient --register --mode=all
+12/27/2021 09:34:01 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm linuxClient --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/27/2021 09:34:11 AM: INFO: Virtual Box command Executed: VBoxManage clonevm RockyBase --name=LinuxRouter --register --mode=all
+12/27/2021 09:34:12 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+12/27/2021 09:34:12 AM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic4 intnet --intnet4 SecondPrivateNetwork --cpus=1 --memory=1024
+01/27/2022 01:00:26 PM: INFO: Virtual Box command Executed: VBoxManage clonevm RockyBase --name=DHCP_SERVER1 --register --mode=all
+01/27/2022 01:00:26 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm DHCP_SERVER1 --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+01/27/2022 01:00:32 PM: INFO: Virtual Box command Executed: VBoxManage clonevm RockyBase --name=linuxClient --register --mode=all
+01/27/2022 01:00:33 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm linuxClient --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+01/27/2022 01:00:45 PM: INFO: Virtual Box command Executed: VBoxManage clonevm RockyBase --name=LinuxRouter --register --mode=all
+01/27/2022 01:00:45 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+01/27/2022 01:00:53 PM: INFO: Virtual Box command Executed: VBoxManage clonevm RockyBase --name=WebServer --register --mode=all
+01/27/2022 01:00:53 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm WebServer --nic3 intnet --intnet3 'NOVA' --cpus=1 --memory=1024
+01/27/2022 01:00:53 PM: INFO: Virtual Box command Executed: vboxmanage modifyvm LinuxRouter --nic4 intnet --intnet4 SecondPrivateNetwork --cpus=1 --memory=1024

@@ -47,7 +47,14 @@ Machine = namedtuple("Machine", ("name",
                                  "interface_name")
                      )
 
-
+INTERNAL_INTERFACE_NAME = f"'{'NOVA'}'"
+linux_router = Machine(
+    name="LinuxRouter",
+    cpu=1,
+    memory=1024,
+    interface_adapter=InterfaceAdapter.INTERFACE_3.value,
+    interface_type=InterfaceAdapterType.INTERNAL.value,
+    interface_name=INTERNAL_INTERFACE_NAME
 
 def validate_existing_machine(verify_this_machine_name):
     """
@@ -56,7 +63,7 @@ def validate_existing_machine(verify_this_machine_name):
     :return: <Boolean> True if is valid, False otherwise
     """
 
-    os_command_to_run = (f'vboxmanage list vms')
+    os_command_to_run = f'vboxmanage list vms'
     cmd = os_command_to_run
     # bufsize, if given, has the same meaning as the corresponding argument to the built-in open() function:
     # 0 means unbuffered,
@@ -122,7 +129,7 @@ def clone_virtual_machine(clone_this_machine, machine=None):
         raise RuntimeError("Something Went wrong")
 
 
-def modify_machine_settings( machine=None):
+def modify_machine_settings(machine=None):
     # Verify that there is a configuration setting for the new machine
     # TODO: should very parameters.
     #  we are assuming, correct values for each key... ANd keys are OK!
@@ -149,6 +156,7 @@ def modify_machine_settings( machine=None):
         return True
     else:
         raise RuntimeError("Something Went wrong")
+
 
 def modify_interface(machine=None):
     """
@@ -205,8 +213,8 @@ if __name__ == "__main__":
         name="DnsMaster",
         cpu=2,
         memory=2048,
-        interface_adapter=InterfaceAdapter.INTERFACE_3.value,
-        interface_type=InterfaceAdapterType.INTERNAL.value,
+        interface_adapter=InterfaceAdapter.INTERFACE_3.value,  # INTERFACE_3 = 3
+        interface_type=InterfaceAdapterType.INTERNAL.value,    # INTERNAL = "intnet"
         interface_name=INTERNAL_INTERFACE_NAME
     )
     dns_slave = Machine(
@@ -225,11 +233,30 @@ if __name__ == "__main__":
         interface_type=InterfaceAdapterType.INTERNAL.value,
         interface_name=INTERNAL_INTERFACE_NAME
     )
+    
+    linux_client = Machine(
+        name="linuxClient",
+        cpu=1,
+        memory=1024,
+        interface_adapter=InterfaceAdapter.INTERFACE_3.value,
+        interface_type=InterfaceAdapterType.INTERNAL.value,
+        interface_name=INTERNAL_INTERFACE_NAME
+    )
+    web_server = Machine(
+        name="WebServer",
+        cpu=1,
+        memory=1024,
+        interface_adapter=InterfaceAdapter.INTERFACE_3.value,
+        interface_type=InterfaceAdapterType.INTERNAL.value,
+        interface_name=INTERNAL_INTERFACE_NAME
+    )
 
     # CHANGE THIS: THIS MACHINE WILL BE THE MACHINE THAT EXISTS IN VIRTUALBOX AND WE WILL USE TO CLONE
-    WHICH_MACHINE_TO_CLONE = "DebianBase"
+    WHICH_MACHINE_TO_CLONE = "RockyBase"
+    # BOX CREDENTIALS:
+    # root: Xpto0!_#
 
-    machines = (dhcp_server, dns_master, dns_slave, linux_router)
+    machines = (dhcp_server, linux_client, linux_router, web_server)
     for machine in machines:
         clone_virtual_machine(clone_this_machine=WHICH_MACHINE_TO_CLONE, machine=machine)
         print(f"New Virtual box machine name is {machine.name}")
@@ -247,12 +274,12 @@ if __name__ == "__main__":
     modify_machine_settings(machine=linux_router)
 
     # create configurations, so that we can change network adapter 4 to a bridge
-    dhcp_server = Machine(
-        name="DHCP_SERVER1",
-        cpu=1,
-        memory=1024,
-        interface_adapter=InterfaceAdapter.INTERFACE_4.value,
-        interface_type=InterfaceAdapterType.BRIDGED.value,
-        interface_name=None
-    )
-    modify_interface(dhcp_server)
+    #dhcp_server = Machine(
+    #    name="DHCP_SERVER1",
+    #    cpu=1,
+    #    memory=1024,
+    #    interface_adapter=InterfaceAdapter.INTERFACE_4.value,
+    #    interface_type=InterfaceAdapterType.BRIDGED.value,
+    #    interface_name=None
+    #)
+    #modify_interface(dhcp_server)
